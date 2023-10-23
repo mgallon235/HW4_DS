@@ -9,6 +9,7 @@ class Feature_prep:
 
 
 class One_hot_enc(Feature_prep):
+
     def one_hot_enc(self,column_name: str):
         column_data_type = self.df[column_name].dtype
         print(column_data_type)
@@ -18,11 +19,10 @@ class One_hot_enc(Feature_prep):
         df2 = df2.replace({True: 1, False: 0})
         return df2
 
-class Input_mean_weight(Feature_prep):
-    def input_mean_weight(self):
-        df2 = self.df
-        mean_value = df2['weight'].mean()
-        df2['weight'] = df2['weight'].fillna(mean_value)
+class replace_booleans(Feature_prep):
+    def input_mean_weight(self,column_name: str):
+        df2 = self.df.copy()
+        df2[column_name] = df2[column_name].replace('M',1).replace('F',0)
         return df2
 
 

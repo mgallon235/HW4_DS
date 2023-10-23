@@ -1,7 +1,6 @@
-
+import os
 import pandas as pd
-
-df=pd.read_csv("/Users/ruimaciel/Desktop/Barcelona/Computing_for_Data_Science/homework_four/CDS_4/sample_diabetes_mellitus_data.csv")
+#df=pd.read_csv(os.getcwd()+'/Notebooks/sample_diabetes_mellitus_data.csv')
 
 class DropMissingValuesGenderEthnicity:
     def __init__(self, df):
@@ -15,17 +14,17 @@ class FillMissingValuesWithMeanHeightWeight:
         self.df = df
 
     def process(self, columns=["height", "weight"]):
+        dz = self.df.copy()
         for column in columns:
-            self.df[column] = self.df[column].fillna(self.df[column].mean())
-        return self.df
+            dz[column] = self.df[column].fillna(self.df[column].mean())
+        return dz
 
 
 
 # Create an instance and apply both transformations
-transformation_handler = FillMissingValuesWithMeanHeightWeight(df).process()
-final_df = DropMissingValuesGenderEthnicity(transformation_handler).process()
-
-print(final_df.isnull().sum())
+#transformation_handler = FillMissingValuesWithMeanHeightWeight(df).process()
+#final_df = DropMissingValuesGenderEthnicity(transformation_handler).process()
+#print(final_df.isnull().sum())
 
 
 
