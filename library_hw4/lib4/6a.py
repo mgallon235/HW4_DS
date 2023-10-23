@@ -1,11 +1,13 @@
 import os
+import sys
 import pandas as pd
 from sklearn.model_selection import train_test_split
-os.chdir("/Users/ruimaciel/Desktop/Barcelona/Computing_for_Data_Science/homework_four")
+
+sys.path.append("./HW4_DS") 
 
 class DiabetesDataLoader:
     def __init__(self):
-        self.file_path = os.path.join(os.getcwd(), 'sample_diabetes_mellitus_data.csv')
+        self.file_path = os.getcwd()+'/Notebooks/sample_diabetes_mellitus_data.csv'
         self.df = pd.read_csv(self.file_path)
 
     def train_and_test_data(self):
@@ -19,5 +21,3 @@ df_train, df_test = data_loader.train_and_test_data()
 # Print the shapes of the training and test datasets to verify they were correctly split
 print("Training set shape:", df_train.shape)
 print("Test set shape:", df_test.shape)
-
-df_train.head(20)
