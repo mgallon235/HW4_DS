@@ -32,21 +32,22 @@ class CustomModel:
         # Fit the model to the training data and store it as an instance variable
         self.model.fit(X_train, y_train)
 
-    def predict(self,data):
+    def prediction(self,data):
         X_data = data[self._feature_columns]
         # Get predicted probabilities using the stored model
         probabilities = self.model.predict_proba(X_data)
-        return probabilities
+        predictions = self.model.predict(X_data)
+        return probabilities, predictions
     
 
-    # Create an instance of CustomModel with training data and feature/target columns
-custom_model = CustomModel(df_train, feature_columns=["feature1", "feature2"], target_column="diabetes_mellitus", model_type="RandomForest")
+# Create an instance of CustomModel with training data and feature/target columns
+# custom_model = CustomModel(df_train, feature_columns=["feature1", "feature2"], target_column="diabetes_mellitus", model_type="RandomForest")
 
 # Train the model
-custom_model.train()
+# custom_model.train()
 
 # Make predictions on test data
-predicted_probabilities = custom_model.predict(df_test)
+# predicted_probabilities = custom_model.predict(df_test)
 
 #This is how you use it
 
