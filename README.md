@@ -5,12 +5,13 @@
 
         #### Function Folder : lib4
 
-            - Function file 1:  EDA.py
-            - Function file 2: clean_model.py
-            - Function file 3: model_running.py
+            - Python file 1: load_class.py
+            - Python file 2: prepro_class.py
+            - Python file 3: feature_class.py
+            - Python file 4: model_class.py
 
     ## Hmw4 Solution:  hw4.py  
 
     ## Notebooks  
 
-        #### Notebook_q7.ipynb
+        #### Main.ipynb
