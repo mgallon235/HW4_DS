@@ -1,3 +1,7 @@
+#Import Packages
+import random
+import re
+import math
 
 #1. In this exercise we will make a "Patient" class
 #
@@ -34,7 +38,6 @@
 #    following symptoms:
 #    ['fever', 'cough', 'anosmia']
 
-import re
 
 class Patient:
     def __init__(self, name, symptoms):
@@ -63,17 +66,17 @@ class Patient:
         symptom_count = sum(symptom in self.symptoms for symptom in ['fever', 'cough', 'anosmia'])
         return 0.05 + 0.1 * symptom_count
         
-"""Tests that we have done"""
+# """Tests that we have done"""
 
-patient1 = Patient("John", ["nosmia", "fever"])
-patient1.add_test("Covid", False)
-patient1.add_test("Flu", False)
-patient1.add_test("Covid19", True)
-patient1.add_test("COVIDfsadas", False)
+# # patient1 = Patient("John", ["nosmia", "fever"])
+# # patient1.add_test("Covid", False)
+# # patient1.add_test("Flu", False)
+# # patient1.add_test("Covid19", True)
+# # patient1.add_test("COVIDfsadas", False)
 
-probability = patient1.has_covid()
-# Test the has_covid method
-print(f"The probability of having Covid-19: {probability}")
+# # probability = patient1.has_covid()
+# # Test the has_covid method
+# print(f"The probability of having Covid-19: {probability}")
 
 # 2. In this exercise you will make an English Deck class made of Card classes
 # 
@@ -84,8 +87,6 @@ print(f"The probability of having Covid-19: {probability}")
 # 2.1) Create a Card class called "Card".
 # The constructor (__init__ ) should have two parameters the "suit" and the "value" and the suit of the card.
 # The class should store both as attributes.
-
-import random
 
 class Card:
     def __init__(self, suit, value):
@@ -119,19 +120,13 @@ class Deck:
             print("The deck is empty.")
     
 
-"""Not on the exercise, but we wanted to print the deck to see if it was shuffled correctly and the cards removed"""
-    def print_deck(self):
-        if self.Cards:
-            for cards in self.Cards:
-                print(f"{cards.value} of {cards.suit}")
-        else:
-            print("The deck is empty.")
 
-"""Tests that we have done"""
-deck = Deck()
-deck.shuffle()
-drawn_card = deck.draw()
-deck.print_deck()
+
+# """Tests that we have done"""
+# deck = Deck()
+# deck.shuffle()
+# drawn_card = deck.draw()
+# deck.print_deck()
 
 
 # 3. In this exercise you will create an interface that will serve as template 
@@ -141,7 +136,12 @@ deck.print_deck()
 # compute_perimeter() that will implement the formula to compute the perimiter of the plane figure.
 # compute_surface() that will implement the formula to compute the surface of the plane figure.
 
-import math
+def check_positive_num(*args):
+    for var_value in args:
+        if not isinstance(var_value, (int, float)):
+            raise TypeError("Variable must be an int or float")
+        elif var_value <=0:
+            raise ValueError("Variable must be higher than 0")
 
 class PlaneFigure:
     def compute_perimeter(self):
@@ -150,11 +150,9 @@ class PlaneFigure:
     def compute_surface(self):
         raise NotImplementedError("Subclass must implement abstract method")
 
-def check_int_or_float(*args):
-    for var_value in args:
-        if not isinstance(var_value, (int, float)):
-            raise TypeError("Variable must be an int or float")
+
 # 3.2 Create a child class called "Triangle" that inherits from "PlaneFigure" and has as parameters in the constructor "base", "c1", "c2", "h". ("base" being the base, "c1" and "c2" the other two sides of the triangle and "h" the height). Implement the abstract methods with the formula of the triangle.
+
 
 class Triangle(PlaneFigure):
     def __init__(self, base, c1, c2, h):
@@ -162,7 +160,8 @@ class Triangle(PlaneFigure):
         self.c1 = c1
         self.c2 = c2
         self.h = h
-        check_int_or_float(base, c1, c2, h)
+        check_positive_num(base, c1, c2, h)
+
 
     def compute_perimeter_triangle(self):
         return self.base + self.c1 + self.c2
@@ -177,7 +176,7 @@ class Rectangle(PlaneFigure):
     def __init__(self, a, b):
         self.a = a
         self.b = b
-        check_int_or_float(a,b)
+        check_positive_num(a,b)
 
     def compute_perimeter_rectangle(self):
         return 2 * (self.a + self.b)
@@ -190,17 +189,17 @@ class Rectangle(PlaneFigure):
 class Circle(PlaneFigure):
     def __init__(self, radius):
         self.radius = radius
-        check_int_or_float(radius)
+        check_positive_num(radius)
     def compute_perimeter_circle(self):
         return 2 * math.pi * self.radius
     def compute_surface_circle(self):
         return math.pi * self.radius ** 2
     
-"""Tests that we have done"""
-triangle1=Triangle(3,3,5,6)
-rectangle2=Rectangle(4,4)
-circle2=Circle(4)
-triangle2=Triangle(4,4,4,"Hello error")
-triangle1.compute_perimeter_triangle()
-circle2.compute_surface_circle()
-rectangle2.compute_surface_rectangle()
+# """Tests that we have done"""
+# triangle1=Triangle(4,3,5,12)
+# rectangle2=Rectangle(-4,4)
+# circle2=Circle(-4)
+# triangle2=Triangle(4,4,4,"Hello error")
+# triangle1.compute_perimeter_triangle()
+# circle2.compute_surface_circle()
+# rectangle2.compute_surface_rectangle()
