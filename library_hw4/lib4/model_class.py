@@ -10,7 +10,7 @@ class CustomModel:
         self._feature_columns = feature_columns
         self._target_column = target_column
         self.model_type = None  # Public attribute
-        self.df_train = df_train
+        self._df_train = df_train
 
         # Choose between Logistic Regression and Random Forest Classifier
         if model_type is not None:
@@ -24,10 +24,10 @@ class CustomModel:
             raise ValueError("You must specify a model_type (e.g., 'Logistic' or 'RandomForest').")
 
     def train(self):
-        if self.df_train is None:
+        if self._df_train is None:
             raise ValueError("Training data is not set.")
-        X_train = self.df_train[self._feature_columns]
-        y_train = self.df_train[self._target_column]
+        X_train = self._df_train[self._feature_columns]
+        y_train = self._df_train[self._target_column]
 
         # Fit the model to the training data and store it as an instance variable
         self.model.fit(X_train, y_train)
